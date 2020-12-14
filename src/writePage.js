@@ -1,4 +1,4 @@
-const writePage = () => {
+const writePage = (manager, engineers, interns, employees) => {
     return `
     <!DOCTYPE html>
 <html lang="en">
@@ -16,12 +16,12 @@ const writePage = () => {
         <div class="row">
             <div id="manager" class="card" style="width: 30em;">
                 <div class="card-body">
-                <h5 class="card-title bg-danger text-light text-center py-2">Mr.Bross</h5>
-                <h6 class="card-subtitle mb-2 bg-secondary text-light text-center py-1">Manager</h6>
+                <h5 class="card-title bg-danger text-light text-center py-2">${manager[0].name}</h5>
+                <h6 class="card-subtitle mb-2 bg-secondary text-light text-center py-1">${manager[0].role}</h6>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">ID: 123</li>
-                    <li class="list-group-item">Email: <a href="mailto:adamcrandall91@gmail.com">adamcrandall91@gmail.com</a></li>
-                    <li class="list-group-item">Office: 345</li>
+                    <li class="list-group-item">Email: <a href="mailto:${manager[0].email}">${manager[0].email}</a></li>
+                    <li class="list-group-item">Office: ${manager[0].office}</li>
                 </ul>
                 </div>
             </div>

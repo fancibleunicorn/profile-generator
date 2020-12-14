@@ -65,7 +65,7 @@ const getEmployee = () => {
         console.log(employees);
         console.log("all done! Check out your profile page in the dist folder")
         
-        fs.writeFile('team-profile.html', writePage(employees), err => {
+        fs.writeFile('team-profile.html', writePage(manager, engineers, interns, employees), err => {
               if (err) throw err;});
         }
     })
