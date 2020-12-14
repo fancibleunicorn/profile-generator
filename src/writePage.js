@@ -1,4 +1,4 @@
-const writePage = (manager, engineers, interns, employees) => {
+const writePage = (manager) => {
     return `
     <!DOCTYPE html>
 <html lang="en">
@@ -25,35 +25,8 @@ const writePage = (manager, engineers, interns, employees) => {
                 </ul>
                 </div>
             </div>
-            <div id="engineer" class="card" style="width: 30rem;">
-                <div class="card-body">
-                <h5 class="card-title bg-success text-light text-center py-2">Ms Engineer</h5>
-                <h6 class="card-subtitle mb-2 bg-secondary text-light text-center py-1">Engineer</h6>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">ID: 123</li>
-                    <li class="list-group-item">Email: <a href="mailto:adamcrandall91@gmail.com">adamcrandall91@gmail.com</a></li>
-                    <li class="list-group-item">GitHub: <a href="https://github.com/fancibleunicorn">fancibleunicorn</a></li>
-                </ul>
-                </div>
-            </div>
-            <div id="intern" class="card" style="width: 30rem;">
-                <div class="card-body">
-                <h5 class="card-title bg-warning text-light text-center py-2">Student Child</h5>
-                <h6 class="card-subtitle mb-2 bg-secondary text-light text-center py-1">Intern</h6>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">ID: 123</li>
-                    <li class="list-group-item">Email: <a href="mailto:adamcrandall91@gmail.com">adamcrandall91@gmail.com</a></li>
-                    <li class="list-group-item">School: University of Tennessee </li>
-                </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-</body>
-</html>
-    
-    `;
+                `;
+            
 }
 
 module.exports = writePage;

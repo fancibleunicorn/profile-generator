@@ -6,6 +6,7 @@ const getEngineer = require('./getEngineer');
 const getIntern = require('./getIntern');
 const getQuestions = require('./getQuestions');
 const writePage = require('./writePage');
+const writeEngineers = require('./writeEngineers');
 
 const Manager = require('../lib/Manager');
 const Engineer = require('../lib/Engineer');
@@ -65,8 +66,11 @@ const getEmployee = () => {
         console.log(employees);
         console.log("all done! Check out your profile page in the dist folder")
         
-        fs.writeFile('team-profile.html', writePage(manager, engineers, interns, employees), err => {
-              if (err) throw err;});
+        fs.writeFile('team-profile.html', writePage(manager), err => {
+              if (err) throw err;})
+
+        fs.appendFile('team-profile.html', writeEngineers(engineers), err => {
+            if (err) throw err;})
         }
     })
 }
