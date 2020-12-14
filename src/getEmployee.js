@@ -1,9 +1,11 @@
 const inquirer = require('inquirer');
+const fs = require('fs');
 
 const getManager = require('./getManager');
 const getEngineer = require('./getEngineer');
 const getIntern = require('./getIntern');
 const getQuestions = require('./getQuestions');
+const writePage = require('./writePage');
 
 const Manager = require('../lib/Manager');
 const Engineer = require('../lib/Engineer');
@@ -16,6 +18,8 @@ const employees = []
 
 
 const startApp = () => {
+
+    
     getManager()
     .then(({ name , id , email , office }) => {
         this.manager = new Manager( name, id, email, office)
@@ -59,7 +63,10 @@ const getEmployee = () => {
         employees.push(engineers);
         employees.push(interns);
         console.log(employees);
-        console.log("all done!");
+        console.log("all done! Check out your profile page in the dist folder")
+        
+        fs.writeFile('team-profile.html', writePage(employees), err => {
+              if (err) throw err;});
         }
     })
 }
