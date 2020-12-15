@@ -4,28 +4,26 @@ const fs = require('fs');
 const getManager = require('./getManager');
 const getEngineer = require('./getEngineer');
 const getIntern = require('./getIntern');
-const getQuestions = require('./getQuestions');
 const writePage = require('./writePage');
-const writeEngineers = require('./writeEngineers');
+
+
+const writeEngineer = require('./writeEngineer');
+const writeIntern = require('./writeIntern');
 
 const Manager = require('../lib/Manager');
 const Engineer = require('../lib/Engineer');
 const Intern = require('../lib/Intern');
 
 const manager = []
-const engineers = []
-const interns = []
-const employees = []
-
 
 const startApp = () => {
-
-    
+   
     getManager()
     .then(({ name , id , email , office }) => {
         this.manager = new Manager( name, id, email, office)
         manager.push(this.manager);
-        console.log(manager);
+        fs.writeFile('team-profile.html', writePage(manager,), err => {
+            if (err) throw err;})
         getEmployee()
     })
 }
@@ -41,39 +39,56 @@ const getEmployee = () => {
             choices: ['Engineer', 'Intern', 'finish building team']
         },
     ]).then(({ role }) => {
+        let engineer = [];
+        let intern = [];
+
         if (role === "Engineer") {
-            getEngineer().then(({ name, id, email, github}) => {
-                this.engineer = new Engineer( name, id, email, github);
-                engineers.push(this.engineer)
-                console.log(engineers)
+            getEngineer()
+            .then(({ name, id, email, github}) => {
+                this.engineer = new Engineer( name, id, email, github)
+                engineer.push(this.engineer);
+                fs.appendFile('team-profile.html', writeEngineer(engineer), err => {
+                    if (err) throw err;})
                 getEmployee();
                 
-            })
-            
-            
+            })   
+
         } else if (role === "Intern") {
-            getIntern().then(({ name, id, email, school}) => {
-                this.intern = new Intern( name, id, email, school);
-                interns.push(this.intern);
-                console.log(interns);
+            getIntern()
+            .then(({ name, id, email, school}) => {
+                this.intern = new Intern( name, id, email, school)
+                intern.push(this.intern);
+                fs.appendFile('team-profile.html', writeIntern(intern), err => {
+                    if (err) throw err;})
                 getEmployee();
             })
             
         } else {
-        employees.push(manager);
-        employees.push(engineers);
-        employees.push(interns);
-        console.log(employees);
-        console.log("all done! Check out your profile page in the dist folder")
+            fs.appendFile('team-profile.html', 
+            `   </div>
+            </section>
+            
+            </body>
+            </html>`, err => {
+                if (err) throw err;})
+        console.log("all done! Check out your profile page team-profile-html")
         
-        fs.writeFile('team-profile.html', writePage(manager), err => {
-              if (err) throw err;})
-
-        fs.appendFile('team-profile.html', writeEngineers(engineers), err => {
-            if (err) throw err;})
         }
     })
+    
+
+    
 }
+
+
+
+//final code
+
+`</div>
+</section>
+
+</body>
+</html>`
 
 module.exports = getEmployee;
 module.exports = startApp;

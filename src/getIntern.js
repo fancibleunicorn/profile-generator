@@ -1,6 +1,5 @@
 const inquirer = require('inquirer');
 const Intern = require('../lib/Intern');
-const getEmployee = require('./getEmployee');
 
 const getIntern = () => {
     return inquirer.prompt([
